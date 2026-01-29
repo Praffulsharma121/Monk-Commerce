@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Monk Commerce – Product List Management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This is a React-based frontend built for the Monk Commerce assignment.  
+The app allows an e-commerce store owner to create and manage a list of products, handle variants, apply discounts, and reorder items based on the provided designs and API.
 
-## Available Scripts
+The focus was on clean structure, predictable state management, and keeping logic separate from UI.
 
-In the project directory, you can run:
+## Features
+- Product list with single and multiple variants
+- Flat and percentage discounts at product or variant level
+- Show / hide variants when applicable
+- Drag-and-drop reordering of products and variants
+- Product picker modal with search and multi-select
+- Scroll-based pagination (10 items per fetch)
+- Prevents duplicate products
+- Product replacement via picker
 
-### `npm start`
+## Tech Stack
+- React JS
+- JavaScript (ES6+)
+- CSS Modules
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Architecture & Approach
+- UI components are kept focused on rendering and user interaction
+- Data fetching, pagination, and debouncing logic are extracted into custom hooks
+- State is lifted only where multiple components need access
+- No external state management library is used due to limited scope
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Custom Hooks
+- **useFetch** – handles API calls, loading states, and pagination
+- **useDebounce** – used for debounced product search
 
-### `npm test`
+## Styling
+- CSS Modules to avoid global scope issues
+- BEM-like class naming for clarity and consistency
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Demo (optional)
+https://monk-commerce-2r1h.vercel.app
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Run Locally
+```bash
+npm install
+npm start
