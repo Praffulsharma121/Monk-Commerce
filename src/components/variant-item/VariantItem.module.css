@@ -1,0 +1,137 @@
+.VariantItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 63px;
+  margin-top: 20px;
+}
+
+.VariantItem:last-of-type {
+  margin-bottom: 20px;
+}
+
+.VariantItem__Icon {
+  height: fit-content;
+}
+
+.VariantItem__Input--Box {
+  width: 195px;
+  height: 31px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 30px;
+  background-color: #ffffff;
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.VariantItem__PlaceHolder {
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.VariantItem__Adding--Discount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.VariantItem__Discount__Input {
+  width: 60px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+}
+
+.VariantItem__Select__Wrapper {
+  position: relative;
+  width: 95px;
+}
+
+.VariantItem__Select {
+  height: 32px;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.VariantItem__Select__Arrow {
+  width: 12.4px;
+  height: 7px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg width='12.4' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,0,0,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.VariantItem__Select__Wrapper--open .VariantItem__Select__Arrow {
+  transform: rotate(180deg);
+}
+
+.VariantItem__Select__Dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.VariantItem__Select__Option {
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.VariantItem__Select__Option:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.VariantItem__Close__Icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 22px;
+  line-height: 1;
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.VariantItem__Add--Discount--Button {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  width: 141px;
+  height: 32px;
+  border-radius: 30px;
+  background: rgba(0, 128, 96, 1);
+  border: 2px solid rgba(0, 128, 96, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

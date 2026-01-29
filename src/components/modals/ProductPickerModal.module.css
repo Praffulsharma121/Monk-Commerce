@@ -1,0 +1,219 @@
+.Modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.Modal__Container {
+  width: 55%;
+  height: 90%;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.Modal__Header {
+  padding: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal__Title {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: rgba(0, 0, 0, 0.9);
+  margin: 0;
+}
+
+.Modal__Close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Search */
+.Modal__Search {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.Modal__Search--Input--Box{
+  width: 100%;
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 0 10px;
+}
+
+.Modal__Input--Box {
+  width: 92%;
+  padding: 8px 10px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  box-shadow: none;
+}
+
+.Modal__Input--Box:focus,
+.Modal__Input--Box:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.Modal__Search--Clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0 5px;
+  user-select: none;
+}
+
+.Modal__Search--Clear:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Body placeholder */
+.Modal__Body {
+  min-height: 200px;
+  flex: 1;
+  overflow: auto;
+}
+
+/* Footer */
+.Modal__Footer {
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal__Footer--Text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #000000E5;
+}
+
+.Modal__Footer__Actions {
+  display: flex;
+  gap: 8px;
+}
+
+.Modal__Button--Secondary {
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: #fff;
+  cursor: pointer;
+  width: 104px;
+  height: 32px;
+  border-radius: 4px;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #00000099;
+}
+
+.Modal__Button--Primary {
+  border: none;
+  background: #008060;
+  color: #fff;
+  cursor: pointer;
+  width: 72px;
+  height: 32px;
+  border-radius: 4px;
+  border-width: 2px;
+}
+
+.Modal__Checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Modal__Checkbox input {
+  display: none;
+}
+
+.Modal__Checkmark {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  opacity: 1;
+  position: relative;
+  background-color: transparent;
+}
+
+.Modal__Checkbox input:checked + .Modal__Checkmark {
+  background-color: rgba(0, 128, 96, 1);
+  border-color: rgba(0, 128, 96, 1);
+}
+
+.Modal__Checkbox input:checked + .Modal__Checkmark::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.Modal__Body__Item__List {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 10px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Modal__Item__Image {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.Modal__Item__Title {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.Modal__Body__Item__SubList {
+  display: flex;
+  align-items: center;
+  /* gap: 20px; */
+  justify-content: space-between;
+  padding: 10px 20px 10px 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Modal__Body__Item__SubList--Check {
+  display: flex;
+  gap: 20px;
+}

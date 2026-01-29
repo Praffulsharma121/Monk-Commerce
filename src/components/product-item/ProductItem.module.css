@@ -1,0 +1,252 @@
+/* .ProductItem{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ProductItem:last-of-type{
+  border-bottom: none;
+} */
+
+.ProductItem {
+}
+
+.ProductItem__Content {
+  display: flex;
+  width: 550px;
+  gap: 15px;
+  align-items: center;
+}
+
+.ProductItem__Icon {
+  height: fit-content;
+}
+
+.ProductItem__Index {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ProductItem__Error--Text {
+  color: red;
+  margin: 0;
+  margin-top: 15px;
+  margin-left: 40px;
+}
+
+.ProductItem__PlaceHolder {
+  height: fit-content;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0px;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ProductItem__Input--Box {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 1;
+  width: 220px;
+  border-width: 1px;
+  padding: 0 10px;
+  opacity: 1;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  align-items: center;
+}
+
+.ProductItem__Add--Discount--Button {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: rgba(255, 255, 255, 1);
+  width: 141px;
+  height: 32px;
+  border-width: 2px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 128, 96, 1);
+  border: 2px solid rgba(0, 128, 96, 1);
+}
+
+.ProductItem__Adding--Discount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ProductItem__Adding--Discount input {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 1;
+  width: 69px;
+  border-width: 1px;
+  padding: 0 10px;
+  opacity: 1;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  align-items: center;
+}
+
+/* ===== INPUT ===== */
+.ProductItem__Adding--Discount__Input {
+  width: 60px;
+  height: 32px;
+  padding: 0 8px;
+
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+
+  font-size: 12px;
+}
+
+/* ===== SELECT WRAPPER ===== */
+.ProductItem__Select__Wrapper {
+  position: relative;
+  width: 95px;
+}
+
+/* ===== SELECT BOX ===== */
+.ProductItem__Adding--Discount__Select {
+  height: 32px;
+  width: 100%;
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ===== ARROW ===== */
+.ProductItem__Select__Arrow {
+  width: 12.4px;
+  height: 7px;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  transition: transform 0.2s ease;
+
+  background-image: url("data:image/svg+xml,%3Csvg width='12.4' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,0,0,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* rotate arrow when open */
+.ProductItem__Select__Wrapper--open .ProductItem__Select__Arrow {
+  transform: rotate(180deg);
+}
+
+/* ===== DROPDOWN ===== */
+.ProductItem__Select__Dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+
+  width: 100%;
+  background: #fff;
+
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+  z-index: 10;
+}
+
+/* ===== OPTION ===== */
+.ProductItem__Select__Option {
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ProductItem__Select__Option:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.ProductItem__Close__Icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 22px;
+  line-height: 1;
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.ProductItem__Show--Variant--Text {
+  width: fit-content;
+  margin: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  letter-spacing: 0px;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0%;
+  color: rgba(0, 110, 255, 1);
+  justify-self: end;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ProductItem__Variant--Arrow {
+  width: 10px;
+  height: 6px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(0,110,255,1)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.ProductItem__Variant--Arrow--up {
+  transform: rotate(180deg);
+}
+
+.ProductItem__Variant--Arrow--down {
+  transform: rotate(0deg);
+}
+
+.ProductItem__Divider--Div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.ProductItem__Divider {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 94%;
+  margin: 0;
+  margin-left: 25px;
+}
