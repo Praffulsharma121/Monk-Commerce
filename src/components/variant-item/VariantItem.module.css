@@ -12,6 +12,7 @@
 
 .VariantItem__Icon {
   height: fit-content;
+  cursor: pointer;
 }
 
 .VariantItem__Input--Box {

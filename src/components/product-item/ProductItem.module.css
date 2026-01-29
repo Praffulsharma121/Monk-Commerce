@@ -26,6 +26,7 @@
 
 .ProductItem__Icon {
   height: fit-content;
+  cursor: pointer;
 }
 
 .ProductItem__Index {
