@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import StyleCss from "./ProductPickerModal.module.css";
 import { useFetch } from "../../hooks/useFetch";
 import { useDebouncer } from "../../hooks/useDebouncer";
