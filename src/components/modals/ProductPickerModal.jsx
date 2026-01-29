@@ -169,6 +169,7 @@ export const ProductPickerModal = ({
           className={StyleCss["Modal__Body"]}
           ref={modalBodyRef}
         >
+          {loading && (!response?.products || response.products.length === 0) && <Loader />}
           {error && !loading && (
             <ApiError error={error} onRetry={refetch} />
           )}
