@@ -1,7 +1,7 @@
 import './App.css';
 import { Header } from './components/layouts/header/Header';
 import { ProductList } from './components/product-list/ProductList';
-import ErrorBoundary from './components/ui/ErrorBoundary';
+import ErrorBoundary from './components/ui/error-boundary/ErrorBoundary';
 
 function App() {
   return (

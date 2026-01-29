@@ -3,6 +3,8 @@ import DragIcon from "../../assets/icon/dragicon.svg";
 import PencilIcon from "../../assets/icon/pencilicon.svg";
 import StyleCss from "./ProductItem.module.css";
 import { VariantItem } from "../variant-item/VariantItem";
+import { DiscountEditor } from "../ui/discount-editor/DiscountEditor";
+import { DISCOUNT_TYPES, DISCOUNT_LIMITS, DEFAULT_DISCOUNT } from "../../constants/discount";
 
 export const ProductItem = memo(
   ({
@@ -21,7 +23,7 @@ export const ProductItem = memo(
     const [showErrorText, setShowErrorText] = useState(false);
 
     const [discountDetails, setDiscountDetails] = useState(
-      product?.discountDetails ?? { discount: 0, type: "% Off" },
+      product?.discountDetails ?? DEFAULT_DISCOUNT,
     );
 
     const onDragStart = useCallback(
@@ -70,7 +72,7 @@ export const ProductItem = memo(
       }
       const numValue = Number(value);
       if (!isNaN(numValue)) {
-        const clampedValue = Math.max(0, Math.min(100, numValue));
+        const clampedValue = Math.max(DISCOUNT_LIMITS.MIN, Math.min(DISCOUNT_LIMITS.MAX, numValue));
         setDiscountDetails((prev) => ({
           ...prev,
           discount: clampedValue,
@@ -79,12 +81,12 @@ export const ProductItem = memo(
     }, []);
 
     const setPercent = useCallback(() => {
-      setDiscountDetails((p) => ({ ...p, type: "% Off" }));
+      setDiscountDetails((p) => ({ ...p, type: DISCOUNT_TYPES.PERCENTAGE }));
       setIsDropdownOpen(false);
     }, []);
 
     const setFlat = useCallback(() => {
-      setDiscountDetails((p) => ({ ...p, type: "flat" }));
+      setDiscountDetails((p) => ({ ...p, type: DISCOUNT_TYPES.FLAT }));
       setIsDropdownOpen(false);
     }, []);
 
@@ -120,9 +122,11 @@ export const ProductItem = memo(
           <img
             src={DragIcon}
             className={StyleCss["ProductItem__Icon"]}
-            alt=""
+            alt="Drag to reorder product"
             draggable
             onDragStart={onDragStart}
+            role="button"
+            tabIndex={0}
           />
 
           <span className={StyleCss["ProductItem__Index"]}>
@@ -136,57 +140,29 @@ export const ProductItem = memo(
             <img
               src={PencilIcon}
               className={StyleCss["ProductItem__Icon"]}
-              alt=""
+              alt="Edit product selection"
               onClick={onAddProduct}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onAddProduct();
+                }
+              }}
             />
           </div>
 
           {isAddingDiscount ? (
-            <div className={StyleCss["ProductItem__Adding--Discount"]}>
-              <input
-                type="number"
-                className={StyleCss["ProductItem__Adding--Discount__Input"]}
-                value={discountDetails.discount}
-                onChange={onDiscountChange}
-                min="0"
-                max="100"
-              />
-
-              <div
-                className={`${StyleCss["ProductItem__Select__Wrapper"]} ${
-                  isDropdownOpen ? StyleCss["ProductItem__Select__Wrapper--open"] : ""
-                }`}
-              >
-                <div
-                  className={StyleCss["ProductItem__Adding--Discount__Select"]}
-                  onClick={toggleDropdown}
-                >
-                  <span>{discountDetails.type}</span>
-                  <span className={StyleCss["ProductItem__Select__Arrow"]} />
-                </div>
-
-                {isDropdownOpen && (
-                  <div className={StyleCss["ProductItem__Select__Dropdown"]}>
-                    <div
-                      className={StyleCss["ProductItem__Select__Option"]}
-                      onClick={setPercent}
-                    >
-                      % Off
-                    </div>
-                    <div
-                      className={StyleCss["ProductItem__Select__Option"]}
-                      onClick={setFlat}
-                    >
-                      flat off
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <span className={StyleCss["ProductItem__Close__Icon"]} onClick={saveDiscount}>
-                ×
-              </span>
-            </div>
+            <DiscountEditor
+              discountDetails={discountDetails}
+              isDropdownOpen={isDropdownOpen}
+              onDiscountChange={onDiscountChange}
+              toggleDropdown={toggleDropdown}
+              setPercent={setPercent}
+              setFlat={setFlat}
+              saveDiscount={saveDiscount}
+            />
           ) : (
             <button
               className={StyleCss["ProductItem__Add--Discount--Button"]}

@@ -1,5 +1,5 @@
 import React from "react";
-import StyleCss from "./UiComponent.module.css";
+import StyleCss from "./EmptyState.module.css";
 
 export const EmptyState = ({ message = "No products found" }) => {
   return (

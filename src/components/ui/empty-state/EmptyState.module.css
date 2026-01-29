@@ -1,0 +1,20 @@
+.EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px var(--spacing-lg);
+  text-align: center;
+}
+
+.EmptyState__Title {
+  color: #666;
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.EmptyState__Message {
+  color: #999;
+  font-size: var(--font-size-sm);
+}

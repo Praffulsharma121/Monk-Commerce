@@ -1,0 +1,87 @@
+.DiscountEditor {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.DiscountEditor__Input {
+  width: 60px;
+  height: var(--input-height);
+  padding: 0 var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+}
+
+.DiscountEditor__Select__Wrapper {
+  position: relative;
+  width: 95px;
+}
+
+.DiscountEditor__Select {
+  height: var(--input-height);
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.DiscountEditor__Select__Arrow {
+  width: 12.4px;
+  height: 7px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg width='12.4' height='7' viewBox='0 0 12 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,0,0,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.DiscountEditor__Select__Wrapper--open .DiscountEditor__Select__Arrow {
+  transform: rotate(180deg);
+}
+
+.DiscountEditor__Select__Dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.DiscountEditor__Select__Option {
+  padding: 6px 10px;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.DiscountEditor__Select__Option:hover {
+  background: var(--color-hover-bg);
+}
+
+.DiscountEditor__Close__Icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  font-size: 22px;
+  line-height: 1;
+  margin-left: var(--spacing-lg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.DiscountEditor__Close__Icon:hover {
+  color: var(--color-text-primary);
+}

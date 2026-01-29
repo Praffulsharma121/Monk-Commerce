@@ -11,7 +11,7 @@ export const useFetch = ({ search = "", page = 1, limit = 10, append = false }) 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchApiResponse = useCallback(async () => {
+  const fetchApiResponse = useCallback(async (signal) => {
     setLoading(true);
     setError(null);
 
@@ -28,10 +28,15 @@ export const useFetch = ({ search = "", page = 1, limit = 10, append = false }) 
       const headers = {};
       headers["x-api-key"] = config.apiKey;
 
-      const res = await fetch(url, { method: "GET", headers });
+      const res = await fetch(url, { method: "GET", headers, signal });
 
       if (!res.ok) {
-        throw new Error(`API failed: ${res.status}`);
+        const errorMessages = {
+          404: "Products not found. Please try again later.",
+          500: "Server error. Please try again later.",
+          403: "Access denied. Please check your credentials.",
+        };
+        throw new Error(errorMessages[res.status] || `Unable to fetch products (Error ${res.status})`);
       }
 
       const data = await res.json();
@@ -45,6 +50,9 @@ export const useFetch = ({ search = "", page = 1, limit = 10, append = false }) 
         limit,
       }));
     } catch (err) {
+      if (err.name === 'AbortError') {
+        return;
+      }
       setError(err.message);
       if (!append) {
         setResponse({
@@ -60,8 +68,17 @@ export const useFetch = ({ search = "", page = 1, limit = 10, append = false }) 
   }, [search, page, limit, append]);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    fetchApiResponse(abortController.signal);
+    
+    return () => {
+      abortController.abort();
+    };
+  }, [fetchApiResponse]);
+
+  const refetch = useCallback(() => {
     fetchApiResponse();
   }, [fetchApiResponse]);
 
-  return { response, loading, error, refetch: fetchApiResponse };
+  return { response, loading, error, refetch };
 };

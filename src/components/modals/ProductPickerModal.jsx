@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import StyleCss from "./ProductPickerModal.module.css";
 import { useFetch } from "../../hooks/useFetch";
 import { useDebouncer } from "../../hooks/useDebouncer";
-import { Loader } from "../ui/Loader";
-import { ApiError } from "../ui/ApiError";
-import { EmptyState } from "../ui/EmptyState";
+import { Loader } from "../ui/loader/Loader";
+import { ApiError } from "../ui/api-error/ApiError";
+import { EmptyState } from "../ui/empty-state/EmptyState";
 import SearchIcon from "../../assets/icon/searchicon.svg";
 
 export const ProductPickerModal = ({
@@ -78,7 +78,6 @@ export const ProductPickerModal = ({
   if (!isOpen) return null;
 
   const onSelectCheckBox = (product) => {
-    console.log(product);
     setSelectedProducts((prev) => {
       const exist = prev?.some((item) => item.id === product.id);
       return exist
@@ -147,13 +146,14 @@ export const ProductPickerModal = ({
         </div>
         <div className={StyleCss["Modal__Search"]}>
         <div className={StyleCss["Modal__Search--Input--Box"]}>
-          <img src={SearchIcon} />
+          <img src={SearchIcon} alt="Search" />
           <input
             className={StyleCss["Modal__Input--Box"]}
             type="text"
             placeholder="Search product"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            aria-label="Search products"
           />
           {searchTerm && (
             <span

@@ -1,6 +1,8 @@
 import React, { useState, useCallback, memo } from "react";
 import DragIcon from "../../assets/icon/dragicon.svg";
 import StyleCss from "./VariantItem.module.css";
+import { DiscountEditor } from "../ui/discount-editor/DiscountEditor";
+import { DISCOUNT_TYPES, DISCOUNT_LIMITS, DEFAULT_DISCOUNT } from "../../constants/discount";
 
 export const VariantItem = memo(
   ({ variant, productId, variantIndex, variantLength, addVariantDiscountDetails, moveVariant }) => {
@@ -8,10 +10,7 @@ export const VariantItem = memo(
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [discountDetails, setDiscountDetails] = useState(
-      variant.discountDetails ?? {
-        discount: 0,
-        type: "% Off",
-      },
+      variant.discountDetails ?? DEFAULT_DISCOUNT,
     );
 
     const toggleDiscount = useCallback(
@@ -32,7 +31,7 @@ export const VariantItem = memo(
       }
       const numValue = Number(value);
       if (!isNaN(numValue)) {
-        const clampedValue = Math.max(0, Math.min(100, numValue));
+        const clampedValue = Math.max(DISCOUNT_LIMITS.MIN, Math.min(DISCOUNT_LIMITS.MAX, numValue));
         setDiscountDetails((prev) => ({
           ...prev,
           discount: clampedValue,
@@ -41,12 +40,12 @@ export const VariantItem = memo(
     }, []);
 
     const setPercent = useCallback(() => {
-      setDiscountDetails((p) => ({ ...p, type: "% Off" }));
+      setDiscountDetails((p) => ({ ...p, type: DISCOUNT_TYPES.PERCENTAGE }));
       setIsDropdownOpen(false);
     }, []);
 
     const setFlat = useCallback(() => {
-      setDiscountDetails((p) => ({ ...p, type: "flat" }));
+      setDiscountDetails((p) => ({ ...p, type: DISCOUNT_TYPES.FLAT }));
       setIsDropdownOpen(false);
     }, []);
 
@@ -93,9 +92,11 @@ export const VariantItem = memo(
         <img
           src={DragIcon}
           className={StyleCss["VariantItem__Icon"]}
-          alt=""
+          alt="Drag to reorder variant"
           draggable
           onDragStart={onDragStart}
+          role="button"
+          tabIndex={0}
         />
 
         <div className={StyleCss["VariantItem__Input--Box"]}>
@@ -103,54 +104,15 @@ export const VariantItem = memo(
         </div>
 
         {isAddingDiscount ? (
-          <div className={StyleCss["VariantItem__Adding--Discount"]}>
-            <input
-              type="number"
-              className={StyleCss["VariantItem__Discount__Input"]}
-              value={discountDetails.discount}
-              onChange={onDiscountChange}
-              min="0"
-              max="100"
-            />
-
-            <div
-              className={`${StyleCss["VariantItem__Select__Wrapper"]} ${
-                isDropdownOpen ? StyleCss["VariantItem__Select__Wrapper--open"] : ""
-              }`}
-            >
-              <div
-                className={StyleCss["VariantItem__Select"]}
-                onClick={toggleDropdown}
-              >
-                <span>{discountDetails.type}</span>
-                <span className={StyleCss["VariantItem__Select__Arrow"]} />
-              </div>
-
-              {isDropdownOpen && (
-                <div className={StyleCss["VariantItem__Select__Dropdown"]}>
-                  <div
-                    className={StyleCss["VariantItem__Select__Option"]}
-                    onClick={setPercent}
-                  >
-                    % Off
-                  </div>
-                  <div
-                    className={StyleCss["VariantItem__Select__Option"]}
-                    onClick={setFlat}
-                  >
-                    flat off
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <span
-              className={StyleCss["VariantItem__Close__Icon"]}
-              onClick={saveDiscount}
-            >
-              ×
-            </span>
-          </div>
+          <DiscountEditor
+            discountDetails={discountDetails}
+            isDropdownOpen={isDropdownOpen}
+            onDiscountChange={onDiscountChange}
+            toggleDropdown={toggleDropdown}
+            setPercent={setPercent}
+            setFlat={setFlat}
+            saveDiscount={saveDiscount}
+          />
         ) : (
           <button
             className={StyleCss["VariantItem__Add--Discount--Button"]}

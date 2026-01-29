@@ -1,0 +1,47 @@
+/* CSS Variables for consistent styling */
+:root {
+  /* Colors */
+  --color-primary: rgba(0, 128, 96, 1);
+  --color-primary-dark: rgba(0, 110, 80, 1);
+  --color-text-primary: rgba(0, 0, 0, 0.9);
+  --color-text-secondary: rgba(0, 0, 0, 0.5);
+  --color-text-muted: rgba(0, 0, 0, 0.4);
+  --color-border: rgba(0, 0, 0, 0.07);
+  --color-border-light: rgba(0, 0, 0, 0.1);
+  --color-white: #ffffff;
+  --color-error: #d82c0d;
+  --color-link: rgba(0, 110, 255, 1);
+  --color-hover-bg: rgba(0, 0, 0, 0.04);
+  --color-backdrop: rgba(0, 0, 0, 0.45);
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.2);
+
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Dimensions */
+  --input-height: 32px;
+  --button-height: 32px;
+  --icon-size: 20px;
+}
