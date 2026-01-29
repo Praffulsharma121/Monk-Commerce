@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import StyleCss from "./ProductPickerModal.module.css";
 import { useFetch } from "../../hooks/useFetch";
 import { useDebouncer } from "../../hooks/useDebouncer";
@@ -19,6 +19,7 @@ export const ProductPickerModal = ({
   const modalBodyRef = useRef(null);
   const prevSearchRef = useRef("");
   const isLoadingMoreRef = useRef(false);
+  const loadingRef = useRef(false);
 
   const { response, loading, error, refetch } = useFetch({
     search: debouncedSearch,
@@ -47,33 +48,35 @@ export const ProductPickerModal = ({
     }
   }, [debouncedSearch]);
 
+  loadingRef.current = loading;
+
   useEffect(() => {
     if (!loading) {
       isLoadingMoreRef.current = false;
     }
   }, [loading]);
 
-  const handleScroll = () => {
-    if (!modalBodyRef.current || loading || isLoadingMoreRef.current) return;
+  const handleScroll = useCallback(() => {
+    if (!modalBodyRef.current || loadingRef.current || isLoadingMoreRef.current) return;
 
     const { scrollTop, scrollHeight, clientHeight } = modalBodyRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
-    
+
     if (isAtBottom) {
       isLoadingMoreRef.current = true;
       setPage((prev) => prev + 1);
     }
-  };
+  }, []);
 
   useEffect(() => {
     const modalBody = modalBodyRef.current;
-    if (modalBody) {
+    if (modalBody && isOpen) {
       modalBody.addEventListener("scroll", handleScroll);
       return () => {
         modalBody.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [handleScroll]);
+  }, [handleScroll, isOpen]);
 
   if (!isOpen) return null;
 
