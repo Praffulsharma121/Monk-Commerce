@@ -17,6 +17,7 @@ export const ProductItem = memo(
     moveProduct,
     moveVariant,
     removeVariant,
+    removeProduct,
   }) => {
     const [isAddingDiscount, setIsAddingDiscount] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -158,24 +159,43 @@ export const ProductItem = memo(
             />
           </div>
 
-          {isAddingDiscount ? (
-            <DiscountEditor
-              discountDetails={discountDetails}
-              isDropdownOpen={isDropdownOpen}
-              onDiscountChange={onDiscountChange}
-              toggleDropdown={toggleDropdown}
-              setPercent={setPercent}
-              setFlat={setFlat}
-              saveDiscount={saveDiscount}
-            />
-          ) : (
-            <button
-              className={StyleCss["ProductItem__Add--Discount--Button"]}
-              onClick={toggleDiscount}
-            >
-              Add Discount
-            </button>
-          )}
+          <div className={StyleCss["ProductItem__Discount--Row"]}>
+            {isAddingDiscount ? (
+              <DiscountEditor
+                discountDetails={discountDetails}
+                isDropdownOpen={isDropdownOpen}
+                onDiscountChange={onDiscountChange}
+                toggleDropdown={toggleDropdown}
+                setPercent={setPercent}
+                setFlat={setFlat}
+                saveDiscount={saveDiscount}
+              />
+            ) : (
+              <button
+                className={StyleCss["ProductItem__Add--Discount--Button"]}
+                onClick={toggleDiscount}
+              >
+                Add Discount
+              </button>
+            )}
+            {product && productLength > 0 && removeProduct && (
+              <span
+                className={StyleCss["ProductItem__Close__Icon"]}
+                onClick={() => removeProduct(index)}
+                role="button"
+                aria-label="Remove product"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    removeProduct(index);
+                  }
+                }}
+              >
+                ×
+              </span>
+            )}
+          </div>
         </div>
         {showErrorText && (
           <small className={StyleCss["ProductItem__Error--Text"]}>

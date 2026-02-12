@@ -82,6 +82,10 @@ export const ProductList = () => {
     );
   }, []);
 
+  const removeProduct = useCallback((index) => {
+    setSelectedProductList((prev) => prev.filter((_, i) => i !== index));
+  }, []);
+
   const renderedProducts = useMemo(
     () =>
       selectedProductList.map((product, index) => {
@@ -98,6 +102,7 @@ export const ProductList = () => {
             moveProduct={moveProduct}
             moveVariant={moveVariant}
             removeVariant={removeVariant}
+            removeProduct={removeProduct}
           />
         );
       }),
@@ -109,6 +114,7 @@ export const ProductList = () => {
       moveProduct,
       moveVariant,
       removeVariant,
+      removeProduct,
     ],
   );
 
