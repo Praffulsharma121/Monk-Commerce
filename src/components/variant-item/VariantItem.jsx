@@ -5,17 +5,11 @@ import { DiscountEditor } from "../ui/discount-editor/DiscountEditor";
 import { DISCOUNT_TYPES, DISCOUNT_LIMITS, DEFAULT_DISCOUNT } from "../../constants/discount";
 
 export const VariantItem = memo(
-  ({ variant, productId, variantIndex, variantLength, addVariantDiscountDetails, moveVariant }) => {
-    const [isAddingDiscount, setIsAddingDiscount] = useState(false);
+  ({ variant, productId, variantIndex, variantLength, addVariantDiscountDetails, moveVariant, removeVariant }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [discountDetails, setDiscountDetails] = useState(
       variant.discountDetails ?? DEFAULT_DISCOUNT,
-    );
-
-    const toggleDiscount = useCallback(
-      () => setIsAddingDiscount((p) => !p),
-      [],
     );
 
     const toggleDropdown = useCallback(() => setIsDropdownOpen((p) => !p), []);
@@ -51,8 +45,11 @@ export const VariantItem = memo(
 
     const saveDiscount = useCallback(() => {
       addVariantDiscountDetails(productId, variant.id, discountDetails);
-      setIsAddingDiscount(false);
     }, [addVariantDiscountDetails, productId, variant.id, discountDetails]);
+
+    const handleClose = useCallback(() => {
+      if (removeVariant) removeVariant(productId, variant.id);
+    }, [removeVariant, productId, variant.id]);
 
     const onDragStart = useCallback(
       (e) => {
@@ -103,24 +100,23 @@ export const VariantItem = memo(
           <p className={StyleCss["VariantItem__PlaceHolder"]}>{variant.title}</p>
         </div>
 
-        {isAddingDiscount ? (
-          <DiscountEditor
-            discountDetails={discountDetails}
-            isDropdownOpen={isDropdownOpen}
-            onDiscountChange={onDiscountChange}
-            toggleDropdown={toggleDropdown}
-            setPercent={setPercent}
-            setFlat={setFlat}
-            saveDiscount={saveDiscount}
-          />
-        ) : (
-          <button
+        <DiscountEditor
+          discountDetails={discountDetails}
+          isDropdownOpen={isDropdownOpen}
+          onDiscountChange={onDiscountChange}
+          toggleDropdown={toggleDropdown}
+          setPercent={setPercent}
+          setFlat={setFlat}
+          saveDiscount={saveDiscount}
+          onClose={handleClose}
+          showCloseButton={variantLength > 1}
+        />
+        {/* <button
             className={StyleCss["VariantItem__Add--Discount--Button"]}
             onClick={toggleDiscount}
           >
             Add Discount
-          </button>
-        )}
+          </button> */}
       </div>
     );
   },

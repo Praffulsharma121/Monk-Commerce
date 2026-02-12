@@ -16,6 +16,7 @@ export const ProductItem = memo(
     productLength,
     moveProduct,
     moveVariant,
+    removeVariant,
   }) => {
     const [isAddingDiscount, setIsAddingDiscount] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -95,9 +96,12 @@ export const ProductItem = memo(
       setIsAddingDiscount(false);
     }, [addDiscountDetails, product, discountDetails]);
 
+    const hasSingleVariant = (product?.variants?.length ?? 0) === 1;
+    const showVariants = showVariant || hasSingleVariant;
+
     const renderedVariants = useMemo(
       () =>
-        showVariant &&
+        showVariants &&
         product?.variants?.map((variant, variantIndex) => (
           <VariantItem
             key={variant.id}
@@ -107,9 +111,10 @@ export const ProductItem = memo(
             variantLength={product?.variants?.length || 0}
             addVariantDiscountDetails={addVariantDiscountDetails}
             moveVariant={moveVariant}
+            removeVariant={removeVariant}
           />
         )),
-      [showVariant, product, addVariantDiscountDetails, moveVariant],
+      [showVariants, product, addVariantDiscountDetails, moveVariant, removeVariant],
     );
 
     return (
@@ -177,7 +182,7 @@ export const ProductItem = memo(
             Please select a product first.
           </small>
         )}
-        {product?.variants && (
+        {product?.variants && product.variants.length > 1 && (
           <p
             onClick={toggleVariant}
             className={StyleCss["ProductItem__Show--Variant--Text"]}

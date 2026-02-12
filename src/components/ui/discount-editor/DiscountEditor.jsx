@@ -10,7 +10,13 @@ export const DiscountEditor = ({
   setPercent,
   setFlat,
   saveDiscount,
+  onClose,
+  showCloseButton = true,
 }) => {
+  const handleCloseClick = () => {
+    if (onClose) onClose();
+    else saveDiscount();
+  };
   return (
     <div className={StyleCss.DiscountEditor}>
       <input
@@ -64,21 +70,23 @@ export const DiscountEditor = ({
         )}
       </div>
 
-      <span
-        className={StyleCss["DiscountEditor__Close__Icon"]}
-        onClick={saveDiscount}
-        role="button"
-        aria-label="Save discount"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            saveDiscount();
-          }
-        }}
-      >
-        ×
-      </span>
+      {showCloseButton && (
+        <span
+          className={StyleCss["DiscountEditor__Close__Icon"]}
+          onClick={handleCloseClick}
+          role="button"
+          aria-label={onClose ? "Remove variant" : "Save discount"}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleCloseClick();
+            }
+          }}
+        >
+          ×
+        </span>
+      )}
     </div>
   );
 };
