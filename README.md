@@ -35,7 +35,7 @@ The focus was on clean structure, predictable state management, and keeping logi
 - CSS Modules to avoid global scope issues
 - BEM-like class naming for clarity and consistency
 
-## Live Demo (optional)
+## Live Demo
 https://monk-commerce-2r1h.vercel.app
 
 <img width="1440" height="782" alt="Screenshot 2026-01-29 at 10 01 33 PM" src="https://github.com/user-attachments/assets/e3d05bf4-8e2c-47a7-8444-8086d90751f8" />
