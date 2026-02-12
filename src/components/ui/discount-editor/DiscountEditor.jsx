@@ -72,7 +72,7 @@ export const DiscountEditor = ({
 
       {showCloseButton && (
         <span
-          className={StyleCss["DiscountEditor__Close__Icon"]}
+          className={StyleCss["DiscountEditor__Save"]}
           onClick={handleCloseClick}
           role="button"
           aria-label={onClose ? "Remove variant" : "Save discount"}
@@ -84,7 +84,7 @@ export const DiscountEditor = ({
             }
           }}
         >
-          ×
+          Save
         </span>
       )}
     </div>
