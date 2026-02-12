@@ -85,3 +85,23 @@
 .DiscountEditor__Close__Icon:hover {
   color: var(--color-text-primary);
 }
+
+.DiscountEditor__Save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-sm);
+  margin-left: var(--spacing-lg);
+  min-height: var(--input-height);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  color: var(--color-primary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.DiscountEditor__Save:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
