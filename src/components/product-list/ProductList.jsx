@@ -69,6 +69,19 @@ export const ProductList = () => {
     });
   }, []);
 
+  const removeVariant = useCallback((productId, variantId) => {
+    setSelectedProductList((prev) =>
+      prev
+        .map((product) => {
+          if (product.id !== productId || !product.variants) return product;
+          const updatedVariants = product.variants.filter((v) => v.id !== variantId);
+          if (updatedVariants.length === 0) return null;
+          return { ...product, variants: updatedVariants };
+        })
+        .filter(Boolean),
+    );
+  }, []);
+
   const renderedProducts = useMemo(
     () =>
       selectedProductList.map((product, index) => {
@@ -84,6 +97,7 @@ export const ProductList = () => {
             addVariantDiscountDetails={addVariantDiscountDetails}
             moveProduct={moveProduct}
             moveVariant={moveVariant}
+            removeVariant={removeVariant}
           />
         );
       }),
@@ -94,6 +108,7 @@ export const ProductList = () => {
       addVariantDiscountDetails,
       moveProduct,
       moveVariant,
+      removeVariant,
     ],
   );
 
